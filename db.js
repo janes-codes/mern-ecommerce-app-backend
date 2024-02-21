@@ -1,15 +1,16 @@
 const mongoose = require('mongoose')
 
-mongoose.connect('mongodb://localhost:27017/artfullApp-db')
-.then(() => {
-    console.log("mongodb connected")
-})
-.catch(() => {
-    console.log("Failed")
-})
+const connectDB = async() =>{
+    try{
+        const connect = await mongoose.connect(process.env.MONGO_URI)
+        console.log(`MongoDB connected`)
+    } catch(err) {
+        console.log(err)
+        process.exit(1)
+    }
+}
 
-
-
+module.exports = connectDB 
 
 
 
